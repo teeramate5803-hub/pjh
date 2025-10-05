@@ -1,0 +1,53 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  background: #f9f9f9;
+}
+
+a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+.place-container {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.place-main {
+  flex: 2;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.place-sidebar {
+  flex: 1;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.cover {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.map iframe {
+  width: 100%;
+  height: 300px;
+  border: 0;
+  border-radius: 10px;
+  margin-top: 15px;
+}
+
+h2 .rating {
+  color: #FFA500;
+  font-size: 1.2rem;
+}

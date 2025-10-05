@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>รายละเอียดสถานที่</title>
+  <link rel="stylesheet" href="data.css">
+</head>
+<body>
+  <a href="index.html">⬅ กลับหน้าหลัก</a>
+   <div class="place-container">
+    <div class="place-main" id="place-detail"></div> <!-- ซ้าย -->
+    <div class="place-sidebar" id="place-sidebar"></div> <!-- ขวา -->
+  </div>
+
+  <!-- รีวิว -->
+  <div id="review-container" style="margin-top:30px;">
+    <h2>รีวิว</h2>
+    <div id="reviews"></div>
+
+    <h3>เพิ่มรีวิว</h3>
+    <input type="text" id="review-name" placeholder="ชื่อของคุณ"><br>
+    <textarea id="review-comment" placeholder="เขียนรีวิว..."></textarea><br>
+    <button id="submit-review">ส่งรีวิว</button>
+  </div>
+
+  <script>
+    fetch("places.json")
+      .then(res => res.json())
+      .then(places => {
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get("id");
+        const p = places[id]; 
+      
+        
+
+        if (!p) {
+          document.getElementById("place-detail").innerHTML = "<p>ไม่พบข้อมูล</p>";
+          return;
+        }
+
+        document.getElementById("place-detail").innerHTML = `
+          <img src="${p.cover}" alt="${p.name}" class="cover">
+          <h2>${p.name} <span class="rating">${p.rating}</span></h2>
+          <div class="map">
+            <iframe src="${p.map}" allowfullscreen loading="lazy"></iframe>
+          </div>
+        `;
+
+        document.getElementById("place-sidebar").innerHTML = `
+          <p><strong>ประเภท:</strong> ${p.type}</p>
+          <p><strong>ราคา:</strong> ${p.price}</p>
+          <p><strong>เบอร์โทร:</strong> ${p.phone}</p>
+          <p><strong>ที่อยู่:</strong> ${p.address}</p>
+          <h3>เวลาเปิด–ปิด</h3>
+          <p>${p.open.weekday}</p>
+          <p>${p.open.weekend}</p>
+          <h3>สิ่งอำนวยความสะดวก</h3>
+          <ul>${p.facilities.map(f => `<li>✔ ${f}</li>`).join("")}</ul>
+        `;
+
+          // --- รีวิว ---
+        function loadReviews() {
+          fetch(`review.php?place_id=${id}`)
+            .then(res => res.json())
+            .then(data => {
+              const reviewsDiv = document.getElementById('reviews');
+              reviewsDiv.innerHTML = '';
+              data.forEach(r => {
+                const div = document.createElement('div');
+                div.classList.add('review');
+                div.innerHTML = `<strong>${r.name}</strong> (${r.created_at})<p>${r.comment}</p>`;
+                reviewsDiv.appendChild(div);
+              });
+            });
+        }
+
+        loadReviews();
+
+        document.getElementById('submit-review').addEventListener('click', () => {
+          const name = document.getElementById('review-name').value;
+          const comment = document.getElementById('review-comment').value;
+
+          fetch('review.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ place_id: id, name, comment })
+          })
+          .then(res => res.json())
+          .then(data => {
+            if(data.status === 'success') {
+              document.getElementById('review-name').value = '';
+              document.getElementById('review-comment').value = '';
+              loadReviews();
+            } else {
+              alert('เกิดข้อผิดพลาด: ' + data.message);
+            }
+          });
+        });
+
+      });
+  </script>
+</body>
+</html>

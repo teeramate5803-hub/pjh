@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>แนะนำสถานที่</title>
+  <link rel="stylesheet" href="data.css">
+</head>
+<body>
+  <h1>แนะนำสถานที่ท่องเที่ยว / ร้านอาหาร</h1>
+  <div id="cards"></div> <!-- ที่ว่างสำหรับการ์ด -->
+
+  <script>
+    fetch("places.json")
+      .then(res => res.json())
+      .then(places => {
+        const cards = document.getElementById("cards");
+        for (let id in places) {
+          const p = places[id];
+          cards.innerHTML += `
+            <div class="card">
+              <a href="places.html?id=${id}">
+                <img src="${p.cover}" alt="${p.name}">
+                <h3>${p.name}</h3>
+                <p>${p.type}</p>
+              </a>
+            </div>
+          `;
+        }
+      });
+  </script>
+</body>
+</html>

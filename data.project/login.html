@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>ระบบ Login</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #f4f4f4;
+    }
+    .box {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      width: 300px;
+      text-align: center;
+    }
+    input {
+      width: 90%;
+      padding: 8px;
+      margin: 5px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      padding: 8px 15px;
+      margin: 5px;
+      border: none;
+      border-radius: 5px;
+      background: #007bff;
+      color: #fff;
+      cursor: pointer;
+    }
+    button:hover { background: #0056b3; }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h2>ระบบ Login</h2>
+    <input type="text" id="username" placeholder="ชื่อผู้ใช้"><br>
+    <input type="password" id="password" placeholder="รหัสผ่าน"><br>
+    <button onclick="login()">เข้าสู่ระบบ</button>
+    <button onclick="register()">สมัครสมาชิก</button>
+    <p id="msg"></p>
+  </div>
+
+  <script>
+    // ฟังก์ชันสมัครสมาชิก
+    function register() {
+      let username = document.getElementById("username").value;
+      let password = document.getElementById("password").value;
+
+      if (!username || !password) {
+        document.getElementById("msg").innerText = "⚠️ กรุณากรอกข้อมูลให้ครบ";
+        return;
+      }
+
+      let users = JSON.parse(localStorage.getItem("users")) || {};
+      if (users[username]) {
+        document.getElementById("msg").innerText = "❌ มีผู้ใช้นี้แล้ว";
+      } else {
+        users[username] = password;
+        localStorage.setItem("users", JSON.stringify(users));
+        document.getElementById("msg").innerText = "✅ สมัครสมาชิกสำเร็จ";
+      }
+    }
+
+    // ฟังก์ชันเข้าสู่ระบบ
+    function login() {
+      let username = document.getElementById("username").value;
+      let password = document.getElementById("password").value;
+
+      let users = JSON.parse(localStorage.getItem("users")) || {};
+      if (users[username] && users[username] === password) {
+        document.getElementById("msg").innerText = "✅ ยินดีต้อนรับ " + username;
+        window.location.href = "index.html";
+      } else {
+        document.getElementById("msg").innerText = "❌ ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง";
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,458 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /* font-family: Arial, sans-serif; */
+    font-family: 'Sukhumvit Set', 'Kanit', Arial, sans-serif;
+    background-color: #edf0f2;
+}
+
+/* Navbar */
+nav {
+    padding: 2rem;
+    background-color: #fff;
+}
+
+.container {
+    max-width: 1140px;
+    margin: 0 auto;
+}
+
+.nav-con {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* เพิ่มเพื่อให้เมนูอยู่กึ่งกลาง */
+} 
+
+.logo a {
+    font-size: 2rem;
+    color: black;
+    text-decoration: none;
+}
+
+.menu {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.menu li {
+    margin: 0 1rem;
+}
+
+.menu li a {
+    color: black;
+    text-decoration: none;
+}
+
+/* Dropdown */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown button {
+    background-color: #3498db;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 180px;
+    background-color: #f1f1f1;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    border-radius: 5px;
+    padding: 0;
+    margin: 5px 0 0 0;
+    list-style: none;
+    z-index: 100;
+}
+
+.dropdown-menu li a {
+    display: block;
+    padding: 10px 16px;
+    text-decoration: none;
+    color: black;
+}
+
+.dropdown-menu li a:hover {
+    background-color: #ddd;
+}
+
+.dropdown-divider {
+    border-top: 1px solid #ccc;
+    margin: 4px 0;
+}
+
+/* Image Slider */
+.slider-container {
+    /* max-width: 800px; */
+    position: relative;
+    margin: 0 auto; /* เพิ่ม margin เพื่อให้ไม่ติดกับ navbar */
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.slide {
+    display: none;
+    animation: fadeEffect 1s;
+}
+
+.slide img {
+    width: 100%;
+    height: 500px;
+    vertical-align: middle;
+}
+
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    background-color: rgba(0,0,0,0.5);
+    transform: translateY(-50%);
+}
+
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
+}
+
+.dot {
+    cursor: pointer;
+    height: 10px;
+    width: 10px;
+    margin: 0 5px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.5s ease;
+}
+
+.active, .dot:hover {
+    background-color: #717171;
+}
+
+@keyframes fadeEffect {
+    from { opacity: 0.4; }
+    to { opacity: 1; }
+}
+
+/* ส่วนของเมนูเลือก */
+.manu-1 {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    background-color: #fff;
+    height: auto;
+    width: auto;
+    margin-bottom: 10px;
+}
+.manu-1_1 {
+    display: flex;
+    height: 100px;
+    /* justify-content: space-between; */
+    /* background-color: #717171; */
+}
+
+.manu-in {
+    margin: 20px;
+}
+
+.image-link {
+    /* justify-content: center; */
+    display: block; 
+    width: 100%; 
+    height: 100px; 
+    /* overflow: hidden; */
+    text-decoration: none;
+}
+
+.image-link img {
+    width: 50px; 
+    height: 50px;
+    margin-left: 10px;
+
+}
+
+.image-link p {
+    color: black;
+    text-align: center;
+}
+
+.image-link:hover {
+    transform: translateY(-4px);
+    transition: transform 0.3s ease-in-out;
+}
+
+/* --------ส่วนของคำแนะนำ---------- */
+.content {
+    display: flex;
+    justify-content: center;
+    background-color: #edf0f2;
+}
+.content-in {
+    width: 50%;
+    height: auto;
+    background-color: #fff;
+    margin: 10px;
+    border-radius: 8px; 
+}
+
+/* ----------------------------เนื้อหา */
+
+/*
+    ================================================================
+    General & Layout
+    ================================================================
+*/
+
+/* body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+} */
+
+.contenting {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 15px;
+}
+
+.title {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.tab-header {
+    /* display: flex; */
+    /* justify-content: space-between; */
+    align-items: flex-end;
+    margin-bottom: 20px;
+}
+
+.tab-links {
+    display: flex;
+    gap: 15px;
+}
+
+.tab-link1 {
+    font-size: 16px;
+    font-weight: bold;
+    color: #007bff;
+    text-decoration: none;
+    padding-bottom: 5px;
+    border-bottom: 2px solid transparent;
+    border-bottom-color: #007bff;
+    transition: all 0.2s ease-in-out;
+}
+
+.tab-link2 {
+    font-size: 16px;
+    font-weight: bold;
+    color: #666;
+    text-decoration: none;
+    padding-bottom: 5px;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s ease-in-out;
+}
+
+.tab-link1:hover, .tab-link1.active {
+    color: #007bff;
+    /* border-bottom-color: #007bff; */
+}
+
+.tab-link2:hover, .tab-link2.active {
+    /* color: #007bff; */
+    /* border-bottom-color: #007bff; */
+}
+
+/*
+    ================================================================
+    Card Grid
+    ================================================================
+*/
+.review-grid {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+/*
+    ================================================================
+    Card Component
+    ================================================================
+*/
+.review-card {
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s ease-in-out;
+}
+
+.review-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Image container with sticker */
+.review-image-container {
+    width: 100%;
+    padding-top: 100%; /* Creates a perfect square for the image */
+    position: relative;
+}
+
+.review-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image fills the space without distortion */
+}
+
+.sticker {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 5px 8px;
+    background-color: rgba(255, 255, 255, 0.85);
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #333;
+    letter-spacing: 0.5px;
+}
+
+/* Info container */
+.review-info-container {
+    padding: 10px 15px;
+    flex-grow: 1; /* Allows this section to take up the remaining space */
+    display: flex;
+    flex-direction: column;
+}
+
+.review-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 4px;
+    /* Truncate long text */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.review-category {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+    /* Truncate long text */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.review-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto; /* Pushes the details to the bottom of the card */
+}
+
+.review-rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.review-rating .score {
+    font-weight: bold;
+    color: #333;
+}
+
+.review-rating .rating-stars svg {
+    width: 15px;
+    height: 15px;
+    color: #ffc107; /* A gold color for the stars */
+}
+
+.review-count {
+    font-size: 14px;
+    color: #999;
+}
+
+.load-more-btn {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.load-more-btn a {
+    display: flex;
+    justify-content: center;
+    padding: 6px 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.2s ease-in-out;
+    background-color: #eee;
+}
+
+.load-more-btn a:hover {
+    background-color: #dadada;
+}
+
+/*
+    ================================================================
+    Responsive Design
+    ================================================================
+*/
+@media (max-width: 992px) {
+    .review-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .review-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .review-grid {
+        grid-template-columns: 1fr;
+    }
+}
